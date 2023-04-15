@@ -9,9 +9,6 @@ public class Question {
 
   @Id @GeneratedValue private UUID id;
 
-  @Column(name = "question_id")
-  private UUID surveyId;
-
   @Enumerated(EnumType.STRING)
   @Column(name = "question_type", nullable = false)
   private QuestionType questionType;
