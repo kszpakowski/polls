@@ -2,7 +2,6 @@ package com.kszpakowski.polls.pollservice.domain.survey;
 
 import jakarta.persistence.*;
 
-import java.time.Instant;
 import java.util.UUID;
 
 @Entity
@@ -25,12 +24,6 @@ public class Question {
 
     @Column(name = "position")
     private int position;
-
-//    @Column(name = "created_at")
-//    private Instant createdAt;
-//
-//    @Column(name = "updated_at")
-//    private Instant updatedAt;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Survey survey;
