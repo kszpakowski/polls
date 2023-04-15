@@ -28,8 +28,6 @@ public class Question {
   @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
   private Set<Choice> choices = new HashSet<>();
 
-  // TODO add choices relation
-
   public static Question openQuestion(String questionText) {
     var question = new Question();
     question.questionType = QuestionType.OPEN;
