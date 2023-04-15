@@ -1,4 +1,3 @@
 package com.kszpakowski.polls.pollservice.infrastructure.api.survey;
 
-public record CreateSurveyRequest(String title) {
-}
+public record CreateSurveyRequest(String title) {}
