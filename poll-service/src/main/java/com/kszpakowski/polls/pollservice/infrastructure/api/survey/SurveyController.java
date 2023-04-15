@@ -1,9 +1,11 @@
 package com.kszpakowski.polls.pollservice.infrastructure.api.survey;
 
+import com.kszpakowski.polls.pollservice.application.command.AddQuestionCommand;
 import com.kszpakowski.polls.pollservice.application.command.CreateSurveyCommand;
 import com.kszpakowski.polls.pollservice.application.command.SurveyService;
 import com.kszpakowski.polls.pollservice.application.query.SingleSurveyQuery;
 import com.kszpakowski.polls.pollservice.application.query.SurveyRepository;
+import com.kszpakowski.polls.pollservice.domain.survey.QuestionType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,8 +37,14 @@ public class SurveyController {
     public ResponseEntity<SurveyDto> getSurvey(@PathVariable String surveyId) {
         var query = new SingleSurveyQuery(surveyId);
         var dtoOptional = surveyRepository.getSurvey(query).map(surveyMapper::toDto);
-        return dtoOptional
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        return dtoOptional.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
+
+    //TODO implement adding multiple questions at once
+    @PostMapping("/{surveyId}/questions")
+    public ResponseEntity<SurveyDto> addSurveyQuestion(@PathVariable String surveyId, @RequestBody AddQuestionsRequest req) {
+        AddQuestionCommand cmd = new AddQuestionCommand(surveyId, QuestionType.valueOf(req.type()), req.questionText());
+        return ResponseEntity.ok(surveyMapper.toDto(surveyService.addQuestion(cmd)));
+    }
+
 }

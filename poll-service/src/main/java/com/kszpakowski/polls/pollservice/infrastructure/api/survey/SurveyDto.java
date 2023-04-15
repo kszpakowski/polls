@@ -1,4 +1,6 @@
 package com.kszpakowski.polls.pollservice.infrastructure.api.survey;
 
-public record SurveyDto(String id, String title) {
+import java.util.Set;
+
+public record SurveyDto(String id, String title, Set<QuestionDto> questions) {
 }

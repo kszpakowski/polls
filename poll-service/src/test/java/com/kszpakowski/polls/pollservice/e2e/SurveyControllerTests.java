@@ -26,7 +26,7 @@ public class SurveyControllerTests {
                 .post("/v1/surveys")
                 .then()
                 .statusCode(201)
-                .body("title", equalTo("Test survey"));
+                .body("questionText", equalTo("Test survey"));
     }
 }
 

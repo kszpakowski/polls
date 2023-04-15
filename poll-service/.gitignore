@@ -37,3 +37,4 @@ build/
 ### Local development ###
 local/docker/postgres/data/
 docs/
+/.mvn/
