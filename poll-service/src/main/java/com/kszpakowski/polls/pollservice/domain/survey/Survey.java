@@ -12,7 +12,7 @@ public class Survey {
   @Id @GeneratedValue private UUID id;
 
   //    @NotBlank
-  @Column(name = "questionText")
+  @Column(name = "title")
   private String title;
 
   @OneToMany(mappedBy = "survey", cascade = CascadeType.ALL, orphanRemoval = true)

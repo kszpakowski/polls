@@ -28,13 +28,19 @@ class SurveyServiceImpl implements SurveyService {
 
   @Override
   public Survey addQuestion(AddQuestionCommand cmd) {
+    var surveyOptional = surveyJpaRepository.findById(UUID.fromString(cmd.surveyId()));
+    var question = buildQuestion(cmd);
+    return surveyOptional
+        .map(s -> s.addQuestion(question))
+        .map(surveyJpaRepository::save)
+        .orElseThrow(SurveyNotFoundException::new);
+  }
+
+  private Question buildQuestion(AddQuestionCommand cmd) {
     if (cmd.type() == QuestionType.OPEN) {
-      var surveyOptional = surveyJpaRepository.findById(UUID.fromString(cmd.surveyId()));
-      var question = Question.openQuestion(cmd.questionText());
-      return surveyOptional
-          .map(s -> s.addQuestion(question))
-          .map(surveyJpaRepository::save)
-          .orElseThrow(SurveyNotFoundException::new);
+      return Question.openQuestion(cmd.questionText());
+    } else if (cmd.type() == QuestionType.SINGLE_CHOICE) {
+      return Question.singleChoice(cmd.questionText(), cmd.choices());
     } else {
       throw new NotImplementedException();
     }

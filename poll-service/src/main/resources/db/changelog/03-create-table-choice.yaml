@@ -8,8 +8,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  type: BIGINT
-                  autoIncrement: true
+                  type: UUID
                   constraints:
                     primaryKey: true
               - column:
@@ -19,7 +18,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: question_id
-                  type: BIGINT
+                  type: UUID
                   constraints:
                     nullable: false
               - column:

@@ -45,7 +45,8 @@ public class SurveyController {
   public ResponseEntity<SurveyDto> addSurveyQuestion(
       @PathVariable String surveyId, @RequestBody AddQuestionsRequest req) {
     AddQuestionCommand cmd =
-        new AddQuestionCommand(surveyId, QuestionType.valueOf(req.type()), req.questionText());
+        new AddQuestionCommand(
+            surveyId, QuestionType.valueOf(req.type()), req.questionText(), req.choices());
     return ResponseEntity.ok(surveyMapper.toDto(surveyService.addQuestion(cmd)));
   }
 }

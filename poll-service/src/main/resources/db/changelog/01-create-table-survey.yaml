@@ -12,7 +12,7 @@ databaseChangeLog:
                   constraints:
                     primaryKey: true
               - column:
-                  name: questionText
+                  name: title
                   type: VARCHAR(255)
               - column:
                   name: description
