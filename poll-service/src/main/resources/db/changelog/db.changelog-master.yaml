@@ -1,9 +1,9 @@
 databaseChangeLog:
   - include:
       file: db/changelog/01-create-table-survey.yaml
-#  - include:
-#      file: changelog/02-create-table-question.yaml
-#  - include:
-#      file: changelog/03-create-table-choice.yaml
-#  - include:
-#      file: changelog/04-create-table-answer.yaml
+  - include:
+      file: db/changelog/02-create-table-question.yaml
+  - include:
+      file: db/changelog/03-create-table-choice.yaml
+  - include:
+      file: db/changelog/04-create-table-answer.yaml

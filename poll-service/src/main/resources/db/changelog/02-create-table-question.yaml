@@ -1,0 +1,58 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-question-table
+      author: kszpakowski
+      changes:
+        - createTable:
+            tableName: question
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: survey_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: question_text
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: question_type # todo add question type dictionary table and convert it to relation
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: position
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: 'CURRENT_TIMESTAMP'
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: 'CURRENT_TIMESTAMP'
+#            foreignKeys:
+#              - foreignKey:
+#                  baseColumnNames:
+#                    - survey_id
+#                  baseTableSchemaName: public
+#                  baseTableName: survey
+#                  constraintName: fk_question_survey_id
+#                  referencedColumnNames:
+#                    - id
+#                  referencedTableName: survey
+
