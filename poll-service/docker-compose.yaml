@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:15.2
+    restart: always
+    environment:
+      POSTGRES_USER: survey_service
+      POSTGRES_PASSWORD: bc93a148-aee8-40b9-ad87-1bb93ffdd46b
+      POSTGRES_DB: survey_db
+    volumes:
+      - ./local/docker/postgres/data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
